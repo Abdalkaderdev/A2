@@ -126,6 +126,9 @@
   autorotateToggleElement.addEventListener('click', toggleAutorotate);
 
   // Set up fullscreen mode, if supported.
+  console.log('Fullscreen enabled:', screenfull.enabled);
+  console.log('Fullscreen button setting:', data.settings.fullscreenButton);
+  
   if (screenfull.enabled && data.settings.fullscreenButton) {
     document.body.classList.add('fullscreen-enabled');
     fullscreenToggleElement.addEventListener('click', function() {
@@ -137,6 +140,14 @@
       } else {
         fullscreenToggleElement.classList.remove('enabled');
       }
+    });
+  } else if (data.settings.fullscreenButton) {
+    // Show fullscreen button even if screenfull.enabled is false (for debugging)
+    console.log('Fullscreen API not available, but showing button anyway');
+    document.body.classList.add('fullscreen-enabled');
+    fullscreenToggleElement.addEventListener('click', function() {
+      console.log('Fullscreen button clicked, but API not available');
+      alert('Fullscreen mode is not available in this browser/environment');
     });
   } else {
     document.body.classList.add('fullscreen-disabled');

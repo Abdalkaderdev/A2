@@ -60,6 +60,11 @@
     document.body.classList.add('tooltip-fallback');
   }
 
+  // Show view control buttons if enabled in settings.
+  if (data.settings.viewControlButtons) {
+    document.body.classList.add('view-control-buttons');
+  }
+
   // Viewer options.
   var viewerOpts = {
     controls: {
